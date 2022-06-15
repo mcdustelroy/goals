@@ -1,6 +1,5 @@
 const asyncHandler = require('express-async-handler') // wraps try/catch
 
-
 // desc     Get all goals
 // route    GET /api/goals
 //access    Private
