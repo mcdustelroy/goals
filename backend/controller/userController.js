@@ -37,7 +37,7 @@ const registerUser = asyncHandler(async (req, res) => {
     // check user created succesfully, send back with token
     if (user) {
         res.status(201).json({ 
-            _id: user.id,
+            _id: user._id,
             name: user.name,
             email: user.email,
             token: generateToken(user._id)
@@ -58,9 +58,11 @@ const loginUser = asyncHandler(async (req, res) => {
     const user = await User.findOne({ email })
 
     // if user exists, and password is correct, return user info with token
-    if (user && (await bcrypt.compare(password, user.password))) {
-        res.json({
-            _id: user.id,
+    const isMatch = await bcrypt.compare(password, user.password)
+
+    if (user && isMatch) {
+        res.status(201).json({
+            _id: user._id,
             name: user.name,
             email: user.email,
             token: generateToken(user._id)
@@ -75,13 +77,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // route    GET api/users/me
 // access   Private
 const getMe = asyncHandler(async (req, res) => {
-    const { _id, name, email } = req.user
-
-    res.status(200).json({
-        id: _id,
-        name,
-        email
-    })
+    res.status(200).json(req.user)
 })
 
 // generate JWT
