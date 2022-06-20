@@ -80,6 +80,7 @@ h3 {
   font-weight: 700;
   margin-bottom: 50px;
   padding: 0 20px;
+  text-align: center;
 }
 
 .heading p {
@@ -108,10 +109,20 @@ h3 {
   background: none;
 }
 
+.goal .update {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
 .form,
 .content {
   width: 70%;
   margin: 0 auto;
+  text-align: center;
 }
 
 .form-group {

@@ -1,21 +1,25 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import GoalContext from '../context/goal/goalContext'
+import AuthContext from '../context/auth/authContext'
 
 
 function GoalForm() {
-  // const [text, setText] = useState('')
+  const [text, setText] = useState('')
 
-  // const dispatch = useDispatch()
+  const { createGoal, state: { goals, isError, message, isLoading } } = useContext(GoalContext)
+  const { logout, login, reset, state: { user } } = useContext(AuthContext)
 
-  // const onSubmit = (e) => {
-  //   e.preventDefault()
-
-  //   dispatch(createGoal({ text }))
-  //   setText('')
-  // }
+  const onSubmit = (e) => {
+    e.preventDefault()
+    createGoal({
+      text: text
+    })
+    setText('')
+  }
 
   return (
     <section className='form'>
-      {/* <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
         <div className='form-group'>
           <label htmlFor='text'>Goal</label>
           <input
@@ -31,7 +35,7 @@ function GoalForm() {
             Add Goal
           </button>
         </div>
-      </form> */}
+      </form>
     </section>
   )
 }
