@@ -1,5 +1,4 @@
-import React, { Fragment, useReducer } from 'react';
-import {v4 as uuidv4} from 'uuid';
+import React, { useReducer } from 'react';
 import goalReducer from './goalReducer'
 import GoalContext from './goalContext'
 import axios from "axios";
@@ -125,7 +124,7 @@ const GoalState = props => {
         }
 
         dispatch({ type: LOADING })
-        const res = await axios.put(`/api/goals/${goalID}`, goalData, config)
+        await axios.put(`/api/goals/${goalID}`, goalData, config)
 
         getGoals()
     } catch (err) {

@@ -5,24 +5,8 @@ import {
 	REGISTER_PENDING,
 	LOGOUT,
 	LOGIN_SUCCESS,
-	LOGIN_FAIL,
-	SET_CURRENT,
-	CLEAR_CURRENT,
-	UPDATE_CONTACT,
-	FILTER_CONTACTS,
-	CLEAR_FILTER,
-	CLEAR_ERRORS,
-	USER_LOADED,
-	AUTH_ERROR,
+	LOGIN_FAIL
 } from "../types";
-
-// const initialState = {
-// 	user: user ? user : null,
-// 	isError: false,
-// 	isSuccess: false,
-// 	isLoading: false,
-// 	message: '',
-//   }
 
 export default (state, action) => {
 	switch (action.type) {
@@ -53,21 +37,6 @@ export default (state, action) => {
 				...state,
 				user: null
 			};
-		// case USER_LOADED:
-		// 	return {
-		// 		...state,
-		// 		isAuthenticated: true,
-		// 		loading: false,
-		// 		user: action.payload,
-		// 	};
-		// case AUTH_ERROR:
-		
-		// case CLEAR_ERRORS:
-		// 	localStorage.removeItem("token");
-		// 	return {
-		// 		...state,
-		// 		error: null,
-		// 	};
 		default:
 			return state;
 	}

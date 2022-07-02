@@ -8,10 +8,7 @@ import {
 	REGISTER_FAIL,
 	LOGOUT,
 	LOGIN_SUCCESS,
-	LOGIN_FAIL,
-	USER_LOADED,
-	AUTH_ERROR,
-	CLEAR_ERRORS,
+	LOGIN_FAIL
 } from "../types";
 
 const AuthState = (props) => {
@@ -56,8 +53,8 @@ const AuthState = (props) => {
     }
 
     // Logout
-	const logout = () => {
-        localStorage.removeItem("user"); 
+	const logout = async () => {
+        localStorage.removeItem("user");
 		dispatch({ type: LOGOUT })
 	};
 
@@ -70,10 +67,11 @@ const AuthState = (props) => {
                 localStorage.setItem('user', JSON.stringify(res.data))
             }
             
-            dispatch({
+			dispatch({
 				type: LOGIN_SUCCESS,
 				payload: res.data,
 			});
+
         } catch (err) {
             console.log(err.response.data.msg)
             dispatch({
