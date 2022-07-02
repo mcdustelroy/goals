@@ -61,12 +61,13 @@ const loginUser = asyncHandler(async (req, res) => {
     // Check for user email
     const user = await User.findOne({ email })
     // if user exists, and password is correct, return user info with token
+    
+    let isMatch
     if(user) {
-        const isMatch = await bcrypt.compare(password, user.password)
+        isMatch = await bcrypt.compare(password, user.password)
     }
     
     if (user && isMatch) {
-        console.log('in if')
         res.status(201).json({
             _id: user._id,
             name: user.name,
