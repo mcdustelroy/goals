@@ -3,7 +3,7 @@ import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import AuthContext from '../context/auth/authContext'
 
-const Header = () => {
+const Header = ({toast}) => {
   const { logout, login, reset, state: { user } } = useContext(AuthContext)
   const navigate = useNavigate()
 
@@ -11,6 +11,7 @@ const Header = () => {
     logout()
     reset()
     navigate('/')
+    toast('You are now logged out', {position: toast.POSITION.TOP_CENTER})
   }
 
   return (

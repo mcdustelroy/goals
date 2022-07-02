@@ -3,7 +3,7 @@ import GoalContext from '../context/goal/goalContext'
 import AuthContext from '../context/auth/authContext'
 
 
-function GoalForm() {
+function GoalForm({ toast }) {
   const [text, setText] = useState('')
 
   const { createGoal, state: { goals, isError, message, isLoading } } = useContext(GoalContext)
@@ -15,6 +15,7 @@ function GoalForm() {
       text: text
     })
     setText('')
+    toast('New goal created!', {position: toast.POSITION.TOP_CENTER})
   }
 
   return (

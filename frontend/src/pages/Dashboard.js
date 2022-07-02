@@ -6,17 +6,13 @@ import Spinner from '../components/Spinner'
 import GoalContext from '../context/goal/goalContext'
 import AuthContext from '../context/auth/authContext'
 
-function Dashboard() {
+function Dashboard({ toast }) {
   const navigate = useNavigate()
 
   const { getGoals, state: { goals, isError, message, isLoading } } = useContext(GoalContext)
-  const { reset, state: { user } } = useContext(AuthContext)
+  const { reset, state: { user, isSuccess } } = useContext(AuthContext)
 
   useEffect(() => {
-    if (isError) {
-      console.log(message)
-    }
-
     if (!user) {
       navigate('/login')
     }
@@ -26,7 +22,7 @@ function Dashboard() {
     return () => {
       reset()
     }
-  }, [ user, navigate, isError, message])
+  }, [ user, navigate, isError, message ])
 
 
   if (isLoading) {
@@ -40,13 +36,13 @@ function Dashboard() {
         <p>Goals Dashboard</p>
       </section>
 
-      <GoalForm />
+      <GoalForm toast={toast}/>
 
       <section className='content'>
         {goals.length > 0 ? (
           <div className='goals'>
             {goals.map((goal) => (
-              <GoalItem key={goal._id} goal={goal} />
+              <GoalItem key={goal._id} goal={goal} toast={toast}/>
             ))}
           </div>
         ) : (

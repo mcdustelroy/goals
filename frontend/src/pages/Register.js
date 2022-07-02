@@ -21,10 +21,11 @@ function Register() {
 
   useEffect(() => {
     if(isError) {
-      toast.error(message)
+      toast.error(message, {position: toast.POSITION.TOP_CENTER})
     }
     if (isSuccess || user) {
       navigate('/')
+      toast(`Welcome ${user.name}, let's start setting some goals!`, {position: toast.POSITION.TOP_CENTER})
     }
 
     reset()
@@ -45,7 +46,7 @@ function Register() {
     e.preventDefault()
 
     if (password !== password2) {
-      toast.error('Passwords do not match')
+      toast.error('Passwords do not match', {position: toast.POSITION.TOP_CENTER})
     } else {
       const userData = {
         name,

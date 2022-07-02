@@ -47,7 +47,7 @@ const AuthState = (props) => {
         } catch (err) {
 			dispatch({
 				type: REGISTER_FAIL,
-				payload: err.response.data.msg,
+				payload: err.response.data.message,
 			});
         }
     }
@@ -56,6 +56,7 @@ const AuthState = (props) => {
 	const logout = async () => {
         localStorage.removeItem("user");
 		dispatch({ type: LOGOUT })
+
 	};
 
     // Login User
@@ -73,76 +74,12 @@ const AuthState = (props) => {
 			});
 
         } catch (err) {
-            console.log(err.response.data.msg)
             dispatch({
 				type: LOGIN_FAIL,
-				payload: err.response.data.msg,
+				payload: err.response.data.message,
 			});
         }
     };
-
-	// // Load User
-	// const loadUser = async () => {
-	// 	if (localStorage.token) {
-	// 		setAuthToken(localStorage.token);
-	// 	}
-
-	// 	try {
-	// 		const res = await axios.get("/api/auth");
-
-	// 		dispatch({
-	// 			type: USER_LOADED,
-	// 			payload: res.data,
-	// 		});
-	// 	} catch (err) {
-	// 		dispatch({ type: AUTH_ERROR });
-	// 	}
-	// };
-
-
-
-	// 	try {
-	// 		const res = await axios.post("/api/users", formData, config);
-
-	// 		dispatch({
-	// 			type: REGISTER_SUCCESS,
-	// 			payload: res.data,
-	// 		});
-
-	// 		loadUser();
-	// 	} catch (err) {
-	// 		dispatch({
-	// 			type: REGISTER_FAIL,
-	// 			payload: err.response.data.msg,
-	// 		});
-	// 	}
-	// };
-
-
-
-	// 	try {
-	// 		const res = await axios.post("/api/auth", formData, config);
-
-	// 		dispatch({
-	// 			type: LOGIN_SUCCESS,
-	// 			payload: res.data,
-	// 		});
-
-	// 		loadUser();
-	// 	} catch (err) {
-	// 		dispatch({
-	// 			type: LOGIN_FAIL,
-	// 			payload: err.response.data.msg,
-	// 		});
-	// 	}
-	// };
-
-
-
-	// // Clear Errors
-	// const clearErrors = () => {
-	// 	dispatch({ type: CLEAR_ERRORS });
-	// };
 
 	return (
 		<AuthContext.Provider
